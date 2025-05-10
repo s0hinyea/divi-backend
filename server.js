@@ -3,10 +3,12 @@ import cors from 'cors';
 import Tesseract from 'tesseract.js';
 
 const app = express();
+//create instance of backend, your main application object 
+
 const PORT = process.env.PORT || 3000;
 
 // Allow frontend requests from any domain (important!)
-app.use(cors());
+app.use(cors()); 
 
 // Parse incoming JSON with large image payloads
 app.use(express.json({ limit: '10mb' }));
@@ -31,13 +33,13 @@ app.post('/ocr', async (req, res) => {
     const extractedText = result.data.text;
 
     console.log('[OCR] Text extracted');
-    res.status(200).json({ text: extractedText });
+    res.json({ text: extractedText });
   } catch (error) {
     console.error('[OCR] ERROR:', error.message);
     res.status(500).json({ error: 'OCR failed', details: error.message });
   }
 });
-
+  
 // Default home route
 app.get('/', (req, res) => {
   res.send('Divi backend is running 🧠');
@@ -47,3 +49,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
+
+
