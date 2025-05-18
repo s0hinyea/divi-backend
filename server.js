@@ -23,7 +23,7 @@ app.post('/ocr', async (req, res) => {
   }
 
   try {
-    console.log('[OCR] Got image data');
+    console.log('[OCR] Got new data');
 
 
     // Run OCR
