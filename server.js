@@ -18,18 +18,16 @@ app.post('/ocr', async (req, res) => {
   const { image } = req.body;
 
   if (!image) {
+    console.log("Not image")
     return res.status(400).json({ error: 'No image provided' });
   }
 
   try {
     console.log('[OCR] Got image data');
 
-    // Strip the base64 header
-    const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
-    const imageBuffer = Buffer.from(base64Data, 'base64');
 
     // Run OCR
-    const result = await Tesseract.recognize(imageBuffer, 'eng');
+    const result = await Tesseract.recognize(image, 'eng');
     const extractedText = result.data.text;
 
     console.log('[OCR] Text extracted');
