@@ -75,8 +75,7 @@ app.post('/ocr', async (req, res) => {
     
     res.json({ 
       text: extractedText,  // Keep original text for debugging
-      items: items,
-      liners: lines         // Add structured items
+      items: items        // Add structured items
     });
   } catch (error) {
     console.error('[OCR] ERROR:', error.message);
