@@ -52,7 +52,6 @@ function parseReceiptText(text) {
 app.post('/ocr', async (req, res) => {
   console.log("Start process");
   const { image } = req.body;
-  console.log("Image is here!: " + image);
   if (!image) {
     console.log("Not image")
     return res.status(400).json({ error: 'No image provided' });
