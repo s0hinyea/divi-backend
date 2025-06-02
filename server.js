@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import Tesseract from 'tesseract.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
 //create instance of backend, your main application object 
@@ -39,7 +40,8 @@ function parseReceiptText(text) {
       if (itemName) {
         items.push({
           name: itemName,
-          price: parseFloat(price)
+          price: parseFloat(price),
+          id: uuidv4()
         });
       }
     }
